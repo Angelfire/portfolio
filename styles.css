@@ -55,6 +55,13 @@ body {
   height: 100vh;
   margin: 0 auto;
   max-width: 768px;
+  padding: 0 12px;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0;
+  }
 }
 
 /* header */
@@ -92,6 +99,18 @@ body {
     font-size: 32px;
     margin: 0;
   }
+
+  img {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .sraboutme {
+    img {
+      display: block;
+    }
+  }
 }
 
 .srlocation {
@@ -118,14 +137,22 @@ body {
   border-top-style: solid;
   border-top-width: 1px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
 
   p {
     font-size: 14px;
   }
 }
 
+@media (min-width: 768px) {
+  .srfooter {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
 .palette {
+  display: none;
   height: 6px;
   --stops: 6;
   --a: hsla(0, 0%, 0%, 0.1);
@@ -150,4 +177,10 @@ body {
     var(--f) 100%
   );
   margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+  .palette {
+    display: block;
+  }
 }
