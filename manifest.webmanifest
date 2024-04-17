@@ -1,0 +1,22 @@
+{
+  "background_color":"#f1f5f9",
+  "description":"A little more about me, Andrés Bedoya - Javascript Software Engineer",
+  "display": "standalone",
+  "lang":"en-US",
+  "name":"Andres Bedoya",
+  "short_name":"srhart",
+  "start_url":"/",
+  "theme_color":"#f1f5f9",
+  "icons":[
+     {
+        "src":"./images/icon-192x192.png",
+        "sizes":"96x96",
+        "type":"image/png"
+     },
+     {
+        "src":"./images/icon-512x512.png",
+        "sizes":"512x512",
+        "type":"image/png"
+     }
+  ]
+}
