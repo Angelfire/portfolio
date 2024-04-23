@@ -100,27 +100,22 @@ body {
         font-size: 32px;
         margin: 0;
     }
+}
 
-    img {
-        display: none;
-    }
+.srhero {
+    width: 256px;
+    display: none;
 }
 
 @media (min-width: 768px) {
-    .sraboutme {
-        img {
-            display: block;
-        }
+    .srhero {
+        display: block;
     }
 }
 
 .srlocation {
     font-size: 14px;
     margin-top: 0;
-}
-
-.srhero {
-    width: 256px;
 }
 
 /* footer */
