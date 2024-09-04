@@ -41,60 +41,105 @@
         />
         <meta name="twitter:image" content="https://srhart.co/images/og.png" />
         <meta name="twitter:image:alt" content="Andrés Bedoya - Sr. Hart" />
+        <script type="module">
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            const symbols = ['{}', '[]', '()', '=>', '&&', '||', '===', '!==', '++', '--', '+=', '-=', '*=', '/=', '%=', '**', '...', '?:', '??', '?.', '`${}`'];
+            let symbolGrid = [];
+            let lastTime = 0;
+            const fps = 30;
+            const fpsInterval = 1000 / fps;
+    
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                generateSymbolGrid();
+            }
+    
+            function generateSymbolGrid() {
+                const lineHeight = 20;
+                const symbolWidth = 30;
+                symbolGrid = [];
+    
+                for (let y = 0; y < canvas.height; y += lineHeight) {
+                    const row = [];
+                    for (let x = 0; x < canvas.width; x += symbolWidth) {
+                        row.push({
+                            symbol: symbols[Math.floor(Math.random() * symbols.length)],
+                            x,
+                            y,
+                            color: '#d0d0d0'
+                        });
+                    }
+                    symbolGrid.push(row);
+                }
+            }
+    
+            function drawBackground() {
+                ctx.fillStyle = '#f0f0f0';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.font = '12px monospace';
+    
+                symbolGrid.forEach(row => {
+                    row.forEach(symbol => {
+                        ctx.fillStyle = symbol.color;
+                        ctx.fillText(symbol.symbol, symbol.x, symbol.y);
+                    });
+                });
+            }
+    
+            function handleMouseMove(event) {
+                const rect = canvas.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
+                const hoverRadius = 30;
+    
+                symbolGrid.forEach(row => {
+                    row.forEach(symbol => {
+                        if (Math.abs(symbol.x - x) < hoverRadius && Math.abs(symbol.y - y) < hoverRadius) {
+                            symbol.color = '#505050';
+                        } else {
+                            symbol.color = '#d0d0d0';
+                        }
+                    });
+                });
+            }
+    
+            function animate(currentTime) {
+                requestAnimationFrame(animate);
+    
+                if (currentTime - lastTime < fpsInterval) return;
+    
+                lastTime = currentTime;
+                drawBackground();
+            }
+    
+            window.addEventListener('resize', resizeCanvas);
+            canvas.addEventListener('mousemove', handleMouseMove);
+    
+            resizeCanvas();
+            requestAnimationFrame(animate);
+        </script>
     </head>
-    <body class="container">
-        <header class="srheader">
-            <a href="/">
-                <img src="./images/logo.svg" alt="logo" class="srlogo" />
-            </a>
-            <nav>
-                <ul class="srnav">
-                    <li>
-                        <a
-                            class="rounded-md py-1.5 px-2 font-semibold text-slate-900 dark:text-slate-100 dark:hover:bg-slate-800 hover:bg-slate-100 hover:font-semibold dark:hover:bg-slate-800"
-                            href="#projects"
-                            >/Social
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            class="rounded-md py-1.5 px-2 font-semibold text-slate-900 dark:text-slate-100 dark:hover:bg-slate-800 hover:bg-slate-100 hover:font-semibold dark:hover:bg-slate-800"
-                            href="#talks"
-                            >/Talks
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            class="rounded-md py-1.5 px-2 font-semibold text-slate-900 dark:text-slate-100 dark:hover:bg-slate-800 hover:bg-slate-100 hover:font-semibold dark:hover:bg-slate-800"
-                            href="#projects"
-                            >/Projects
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            class="rounded-md px-2 py-1.5 font-semibold text-slate-900 hover:bg-slate-100 dark:text-slate-100 dark:hover:bg-slate-800"
-                            target="_blank"
-                            rel="noreferrer"
-                            href="https://velocidadescape.com/"
-                            >/Blog
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <section class="sraboutme">
-                <img src="./images/me.webp" alt="me" class="srhero" />
-                <div>
-                    <h1>Hello, I'm Andrés Bedoya</h1>
+    <body>
+        <canvas id="canvas"></canvas>
+        <div class="container">
+            <header class="srheader">
+                <h1 class="srname">Andrés Bedoya</h1>
+                <a href="/">
+                    <img src="./images/logo.svg" alt="logo" class="srlogo" />
+                </a>
+            </header>
+            <main>
+                <section class="sraboutme">
                     <div class="srdescription">
                         <p class="srlocation">
                             Currently in Medellín, Colombia
                             <span class="mr-1">🇨🇴</span>
                         </p>
                         <p>
-                            Empowering companies with stellar software products
-                            through expert JavaScript engineering.
+                            Empowering companies with stellar software products through expert JavaScript engineering. I leverage cutting-edge frameworks and libraries to create robust, scalable solutions that drive business growth.
                         </p>
                         <p>
                             Blogger Evangelist at
@@ -107,205 +152,135 @@
                             >.
                         </p>
                     </div>
-                </div>
-            </section>
-            <section id="social">
-                <h2>Social</h2>
-                <ul>
-                    <li>
-                        <a
-                            aria-label="GitHub account"
-                            href="https://github.com/angelfire"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            GitHub
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            aria-label="Twitter account"
-                            href="https://twitter.com/intent/follow?screen_name=MonsieurHart"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            Twitter
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            aria-label="LinkedIn account"
-                            href="https://www.linkedin.com/in/sabedoya"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            LinkedIn
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            aria-label="Calcom account"
-                            href="https://cal.com/anbedoyag"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            CalCom
-                        </a>
-                    </li>
-                </ul>
-            </section>
-            <section id="talks">
-                <h2>Talks</h2>
-                <ul>
-                    <li>
-                        <a
-                            href="https://slides.com/angelfire/code-aa603e"
-                            target="_blank"
-                            rel="noreferrer"
-                            >Rendering patterns for Web Apps</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://slides.com/angelfire/how-to-stand-out-in-interviews"
-                            target="_blank"
-                            rel="noreferrer"
-                            >How to Stand Out in Interviews</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://slides.com/angelfire/deck-6"
-                            target="_blank"
-                            rel="noreferrer"
-                            >Big O Notation</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://slides.com/angelfire/deck-6f3ef006-b924-4cee-8e80-584bb162d867"
-                            target="_blank"
-                            rel="noreferrer"
-                            >Functional Programming</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://slides.com/angelfire/deck-5"
-                            target="_blank"
-                            rel="noreferrer"
-                            >Vue.js 2.0 (Introduction)</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://slides.com/angelfire/deck"
-                            target="_blank"
-                            rel="noreferrer"
-                            >JS Module Bundlers</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://slides.com/angelfire/javascriptdp"
-                            target="_blank"
-                            rel="noreferrer"
-                            >Javascript Design Patterns</a
-                        >
-                    </li>
-                    <li>
-                        <a
-                            href="https://slides.com/angelfire/grunt-vs-gulp"
-                            target="_blank"
-                            rel="noreferrer"
-                            >GRUNT VS GULP</a
-                        >
-                    </li>
-                </ul>
-            </section>
-            <section id="projects">
-                <h2>Projects</h2>
-                <ul>
-                    <li>
-                        <a
-                            href="https://github.com/Angelfire/es-festivo"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            es-festivo</a
-                        >: ¿Es festivo en Colombia?
-                    </li>
-                    <li>
-                        <a
-                            href="https://github.com/Angelfire/VE"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            Velocidad de Escape</a
-                        >: I jot down some things about my personal interests,
-                        random thoughts and sometimes technical learnings from
-                        day to day. I hope you find some things useful.
-                    </li>
-                    <li>
-                        <a
-                            href="https://github.com/Angelfire/dotfiles"
-                            target="_blank"
-                            rel="noreferrer"
-                            >dotfiles</a
-                        >: My dotfiles
-                    </li>
-                    <li>
-                        <a
-                            href="https://github.com/Angelfire/docker-full-app"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            docker-full-app</a
-                        >: Dockerized Node.js, Express.js and PostgreSQL - React
-                        and TailwindCSS
-                    </li>
-                    <li>
-                        <a
-                            href="https://github.com/Angelfire/astro-cv"
-                            target="_blank"
-                            rel="noreferrer"
-                            >astro-cv</a
-                        >: My CV built with Astro
-                    </li>
-                    <li>
-                        <a
-                            href="https://github.com/Angelfire/react-i18n"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            react-i18n</a
-                        >: React + Internationalization (without packages)
-                    </li>
-                    <li>
-                        <a
-                            href="https://github.com/Angelfire/colorette"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            Colorette</a
-                        >: Generate your color palette with just a couple of
-                        words
-                    </li>
-                    <li>
-                        <a
-                            href="https://github.com/Angelfire/Traveling"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            Traveling</a
-                        >: Generate your travel plan using OpenAI
-                    </li>
-                </ul>
-            </section>
-        </main>
-        <footer class="srfooter">
-            <p>2024 @Copyleft - All Wrongs Reserved - ◉_◉ Sr. Hart</p>
-            <div class="palette"></div>
-        </footer>
+                    <div>
+                        <ul>
+                            <li>
+                                <a
+                                    aria-label="GitHub account"
+                                    href="https://github.com/angelfire"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    GitHub
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    aria-label="Twitter account"
+                                    href="https://twitter.com/intent/follow?screen_name=MonsieurHart"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Twitter
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    aria-label="LinkedIn account"
+                                    href="https://www.linkedin.com/in/sabedoya"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    LinkedIn
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    aria-label="Calcom account"
+                                    href="https://cal.com/anbedoyag"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    CalCom
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    aria-label="Google for Developers"
+                                    href="https://g.dev/srhart"
+                                    rel="noopener noreferrer"
+                                    target="_blank"
+                                >
+                                    Google for Developers
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+                <section id="talks">
+                    <h2>Talks</h2>
+                    <ul>
+                        <li>
+                            <a
+                                href="https://slides.com/angelfire/code-aa603e"
+                                target="_blank"
+                                rel="noreferrer"
+                                >Rendering patterns for Web Apps</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://slides.com/angelfire/how-to-stand-out-in-interviews"
+                                target="_blank"
+                                rel="noreferrer"
+                                >How to Stand Out in Interviews</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://slides.com/angelfire/deck-6"
+                                target="_blank"
+                                rel="noreferrer"
+                                >Big O Notation</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://slides.com/angelfire/deck-6f3ef006-b924-4cee-8e80-584bb162d867"
+                                target="_blank"
+                                rel="noreferrer"
+                                >Functional Programming</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://slides.com/angelfire/deck-5"
+                                target="_blank"
+                                rel="noreferrer"
+                                >Vue.js 2.0 (Introduction)</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://slides.com/angelfire/deck"
+                                target="_blank"
+                                rel="noreferrer"
+                                >JS Module Bundlers</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://slides.com/angelfire/javascriptdp"
+                                target="_blank"
+                                rel="noreferrer"
+                                >Javascript Design Patterns</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://slides.com/angelfire/grunt-vs-gulp"
+                                target="_blank"
+                                rel="noreferrer"
+                                >GRUNT VS GULP</a
+                            >
+                        </li>
+                    </ul>
+                </section>
+            </main>
+            <footer class="srfooter">
+                <p>2024 @Copyleft - All Wrongs Reserved - ◉_◉ Sr. Hart</p>
+                <div class="palette"></div>
+            </footer>
+        </div>
     </body>
 </html>
