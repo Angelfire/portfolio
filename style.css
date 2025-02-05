@@ -1,4 +1,6 @@
-/* jetbrains-mono-latin-wght-normal */
+/* ==========================================================================
+   1. Font Face & Reset
+   ========================================================================== */
 @font-face {
   font-family: "JetBrains Mono Variable";
   font-style: normal;
@@ -11,7 +13,6 @@
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* reset */
 * {
   min-width: 0;
   font: inherit;
@@ -33,6 +34,9 @@ svg {
 body {
   margin: 0;
   min-height: 100vh;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.5;
 }
 
 h1,
@@ -44,26 +48,19 @@ h6 {
   text-wrap: balance;
 }
 
-h2 {
-  font-size: 24px;
-}
-
 p {
   text-wrap: pretty;
 }
 
+/* ==========================================================================
+     2. Layout & Components
+     ========================================================================== */
 #canvas {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-/* layout */
-body {
-  font-family: monospace;
-  font-size: 14px;
-  line-height: 1.5;
-}
 .container {
   position: absolute;
   top: 20px;
@@ -75,35 +72,23 @@ body {
   max-width: 768px;
 }
 
-@media (min-width: 1024px) {
-  .container {
-    margin-right: 0;
-  }
+/* Header */
+.srheader {
+  display: flex;
+  align-items: baseline;
+  column-gap: 12px;
+  justify-content: space-between;
+  font-family: "JetBrains Mono Variable", monospace;
 }
 
-/* header */
 .srhead {
+  display: flex;
   align-items: baseline;
   column-gap: 9px;
-  display: flex;
 }
 
 .sralias {
   font-size: smaller;
-}
-.srheader {
-  align-items: baseline;
-  font-family: "JetBrains Mono Variable", monospace;
-  display: flex;
-  column-gap: 12px;
-  justify-content: space-between;
-}
-
-.srlogo {
-  margin-top: 16px;
-  img {
-    width: 48px;
-  }
 }
 
 .srname {
@@ -118,47 +103,69 @@ body {
   text-transform: uppercase;
 }
 
-/* social */
-.srsocial {
-  ul {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 14px;
-    list-style: none;
-    padding-inline-start: 0;
-  }
+.srlogo {
+  margin-top: 16px;
 }
 
-@media (min-width: 768px) {
-  .srsocial {
-    ul {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      column-gap: 14px;
-    }
-  }
+.srlogo img {
+  width: 48px;
 }
 
-/* journal */
-.srjournal {
-  .blogposts {
-    list-style: none;
-    padding-inline-start: 0;
-  }
+/* Content */
+section {
+  margin-bottom: 39px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: larger;
+  font-weight: bold;
+}
+
+h3 {
+  font-weight: bold;
+  font-family: "JetBrains Mono Variable", monospace;
+  font-size: larger;
+  text-transform: uppercase;
+}
+
+/* Social */
+.srsocial ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  row-gap: 14px;
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+/* Journal */
+.srjournal .blogposts {
+  list-style: none;
+  padding-inline-start: 0;
 }
 
 .journalhead {
-  align-items: center;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+}
 
-  p {
-    text-transform: uppercase;
-    font-family: "JetBrains Mono Variable", monospace;
-    font-size: larger;
-    font-weight: bold;
-  }
+.journalhead p {
+  text-transform: uppercase;
+  font-family: "JetBrains Mono Variable", monospace;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.post {
+  display: flex;
+  align-items: baseline;
+  column-gap: 9px;
+  justify-content: space-between;
+  margin: 5px 0;
 }
 
 .srpostdate {
@@ -183,31 +190,7 @@ body {
   background-position: 0 48%;
 }
 
-.post {
-  align-items: baseline;
-  column-gap: 9px;
-  display: flex;
-  justify-content: space-between;
-  margin: 5px 0;
-}
-
-/* content */
-section {
-  margin-bottom: 39px;
-}
-h2 {
-  font-size: larger;
-  font-weight: bold;
-}
-
-h3 {
-  font-weight: bold;
-  font-family: "JetBrains Mono Variable", monospace;
-  font-size: larger;
-  text-transform: uppercase;
-}
-
-/* footer */
+/* Footer */
 .srfooter {
   border-top-color: darkgrey;
   border-top-style: solid;
@@ -215,17 +198,10 @@ h3 {
   display: flex;
   font-family: "JetBrains Mono Variable", monospace;
   flex-direction: column;
-
-  p {
-    font-size: 14px;
-  }
 }
 
-@media (min-width: 768px) {
-  .srfooter {
-    flex-direction: row;
-    justify-content: space-between;
-  }
+.srfooter p {
+  font-size: 14px;
 }
 
 .palette {
@@ -256,8 +232,29 @@ h3 {
   margin-top: 24px;
 }
 
+/* ==========================================================================
+     3. Media Queries
+     ========================================================================== */
 @media (min-width: 768px) {
+  .srsocial ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 14px;
+  }
+
+  .srfooter {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .palette {
     display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    margin-right: 0;
   }
 }
