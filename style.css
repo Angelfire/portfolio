@@ -92,7 +92,7 @@ body {
   font-size: smaller;
 }
 .srheader {
-  align-items: flex-start;
+  align-items: baseline;
   font-family: "JetBrains Mono Variable", monospace;
   display: flex;
   column-gap: 12px;
@@ -103,7 +103,6 @@ body {
   margin-top: 16px;
   img {
     width: 48px;
-    height: 24px;
   }
 }
 
@@ -124,7 +123,7 @@ body {
   ul {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 14px;
+    row-gap: 14px;
     list-style: none;
     padding-inline-start: 0;
   }
@@ -136,6 +135,7 @@ body {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      column-gap: 14px;
     }
   }
 }
@@ -162,6 +162,7 @@ body {
 }
 
 .srpostdate {
+  flex-shrink: 0;
   font-size: small;
 }
 .dashed-line {
@@ -182,7 +183,7 @@ body {
 }
 
 .post {
-  align-items: center;
+  align-items: flex-start;
   column-gap: 9px;
   display: flex;
   justify-content: space-between;
