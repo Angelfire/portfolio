@@ -1,3 +1,16 @@
+/* jetbrains-mono-latin-wght-normal */
+@font-face {
+  font-family: "JetBrains Mono Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono:vf@latest/latin-wght-normal.woff2)
+    format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* reset */
 * {
   min-width: 0;
@@ -69,27 +82,115 @@ body {
 }
 
 /* header */
+.srhead {
+  align-items: baseline;
+  column-gap: 9px;
+  display: flex;
+}
+
+.sralias {
+  font-size: smaller;
+}
 .srheader {
-  align-items: center;
+  align-items: flex-start;
+  font-family: "JetBrains Mono Variable", monospace;
   display: flex;
   column-gap: 12px;
   justify-content: space-between;
 }
 
 .srlogo {
-  width: 48px;
-  height: 24px;
+  margin-top: 16px;
+  img {
+    width: 48px;
+    height: 24px;
+  }
 }
 
 .srname {
   font-size: x-large;
   font-weight: bold;
+  text-transform: uppercase;
+}
+
+.srsubtitle {
+  font-size: large;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* social */
+.srsocial {
+  ul {
+    display: flex;
+    column-gap: 14px;
+    list-style: none;
+    padding-inline-start: 0;
+  }
+}
+
+/* journal */
+.srjournal {
+  ul {
+    list-style: none;
+    padding-inline-start: 0;
+  }
+}
+
+.journalhead {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    text-transform: uppercase;
+    font-family: "JetBrains Mono Variable", monospace;
+    font-size: larger;
+    font-weight: bold;
+  }
+}
+
+.srpostdate {
+  font-size: small;
+}
+.dashed-line {
+  flex: 1 1 0;
+  min-height: 6px;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    transparent 4px,
+    #262626 5px,
+    #262626 6px
+  );
+  background-repeat: repeat-x;
+  background-size: 6px 1px;
+  background-position: 0 48%;
+}
+
+.post {
+  align-items: center;
+  column-gap: 9px;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* content */
+section {
+  margin-bottom: 39px;
+}
 h2 {
   font-size: larger;
   font-weight: bold;
+}
+
+h3 {
+  font-weight: bold;
+  font-family: "JetBrains Mono Variable", monospace;
+  font-size: larger;
+  text-transform: uppercase;
 }
 
 /* footer */
@@ -98,6 +199,7 @@ h2 {
   border-top-style: solid;
   border-top-width: 1px;
   display: flex;
+  font-family: "JetBrains Mono Variable", monospace;
   flex-direction: column;
 
   p {
