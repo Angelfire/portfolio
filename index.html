@@ -1,300 +1,161 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Andrés Bedoya - Sr. Hart</title>
-        <link rel="canonical" href="https://srhart.co/" />
-        <link rel="icon" href="./images/favicon-32x32.png" type="image/png" />
-        <link rel="apple-touch-icon" href="./images/favicon-32x32.png" />
-        <link rel="manifest" href="./manifest.webmanifest" />
-        <link
-            rel="apple-touch-icon"
-            sizes="512x512"
-            href="./images/icon-512x512.png"
-        />
-        <meta
-            name="description"
-            content="A little more about me, Andrés Bedoya - Javascript Software Engineer"
-        />
-        <meta
-            name="keywords"
-            content="Andres Bedoya, React, JavaScript, NextJS, Astro, HTML, CSS, Tailwind"
-        />
-        <meta name="theme-color" content="#f1f5f9A" />
-        <link rel="stylesheet" href="./style.css?v=1.0.5" />
-        <meta property="og:title" content="Andrés Bedoya - Sr. Hart" />
-        <meta property="og:site_name" content="SrHart" />
-        <meta property="og:url" content="https://srhart.co/" />
-        <meta
-            property="og:description"
-            content="A little more about me, Andrés Bedoya - Javascript Software Engineer"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://srhart.co/images/og.png" />
-        <meta property="twitter:domain" content="https://srhart.co/" />
-        <meta property="twitter:url" content="https://srhart.co/" />
-        <meta name="twitter:title" content="Andrés Bedoya - Sr. Hart" />
-        <meta
-            name="twitter:description"
-            content="A little more about me, Andrés Bedoya - Javascript Software Engineer"
-        />
-        <meta name="twitter:image" content="https://srhart.co/images/og.png" />
-        <meta name="twitter:image:alt" content="Andrés Bedoya - Sr. Hart" />
-        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-        <meta http-equiv="Pragma" content="no-cache">
-        <meta http-equiv="Expires" content="0">
-        <script type="module">
-            const canvas = document.getElementById('canvas');
-            const ctx = canvas.getContext('2d');
-            const symbols = ['{}', '[]', '()', '=>', '&&', '||', '===', '!==', '++', '--', '+=', '-=', '*=', '/=', '%=', '**', '...', '?:', '??', '?.', '`${}`'];
-            let symbolGrid = [];
-            let lastTime = 0;
-            const fps = 30;
-            const fpsInterval = 1000 / fps;
-    
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                generateSymbolGrid();
-            }
-    
-            function generateSymbolGrid() {
-                const lineHeight = 20;
-                const symbolWidth = 30;
-                symbolGrid = [];
-    
-                for (let y = 0; y < canvas.height; y += lineHeight) {
-                    const row = [];
-                    for (let x = 0; x < canvas.width; x += symbolWidth) {
-                        row.push({
-                            symbol: symbols[Math.floor(Math.random() * symbols.length)],
-                            x,
-                            y,
-                            color: '#d0d0d0'
-                        });
-                    }
-                    symbolGrid.push(row);
-                }
-            }
-    
-            function drawBackground() {
-                ctx.fillStyle = '#f0f0f0';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                
-                ctx.font = '12px monospace';
-    
-                symbolGrid.forEach(row => {
-                    row.forEach(symbol => {
-                        ctx.fillStyle = symbol.color;
-                        ctx.fillText(symbol.symbol, symbol.x, symbol.y);
-                    });
-                });
-            }
-    
-            function handleMouseMove(event) {
-                const rect = canvas.getBoundingClientRect();
-                const x = event.clientX - rect.left;
-                const y = event.clientY - rect.top;
-                const hoverRadius = 30;
-    
-                symbolGrid.forEach(row => {
-                    row.forEach(symbol => {
-                        if (Math.abs(symbol.x - x) < hoverRadius && Math.abs(symbol.y - y) < hoverRadius) {
-                            symbol.color = '#505050';
-                        } else {
-                            symbol.color = '#d0d0d0';
-                        }
-                    });
-                });
-            }
-    
-            function animate(currentTime) {
-                requestAnimationFrame(animate);
-    
-                if (currentTime - lastTime < fpsInterval) return;
-    
-                lastTime = currentTime;
-                drawBackground();
-            }
-    
-            window.addEventListener('resize', resizeCanvas);
-            canvas.addEventListener('mousemove', handleMouseMove);
-    
-            resizeCanvas();
-            requestAnimationFrame(animate);
-        </script>
-    </head>
-    <body>
-        <canvas id="canvas"></canvas>
-        <div class="container">
-            <header class="srheader">
-                <div>
-                    <div class="srhead">
-                        <h1 class="srname">Andrés Bedoya</h1>
-                        <p class="sralias">/ Sr. Hart</p>
-                    </div>
-                    <h2 class="srsubtitle">Senior Software Engineer</p>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Andrés Bedoya - Sr. Hart</title>
+    <link rel="canonical" href="https://srhart.co/" />
+    <link rel="icon" href="./images/favicon-32x32.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./images/favicon-32x32.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" sizes="512x512" href="./images/icon-512x512.png" />
+    <meta name="description" content="A little more about me, Andrés Bedoya - Javascript Software Engineer" />
+    <meta name="keywords" content="Andres Bedoya, React, JavaScript, NextJS, Astro, HTML, CSS, Tailwind" />
+    <meta name="theme-color" content="#f1f5f9A" />
+    <link rel="stylesheet" href="./style.css?v=1.0.5" />
+    <meta property="og:title" content="Andrés Bedoya - Sr. Hart" />
+    <meta property="og:site_name" content="SrHart" />
+    <meta property="og:url" content="https://srhart.co/" />
+    <meta property="og:description" content="A little more about me, Andrés Bedoya - Javascript Software Engineer" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://srhart.co/images/og.png" />
+    <meta property="twitter:domain" content="https://srhart.co/" />
+    <meta property="twitter:url" content="https://srhart.co/" />
+    <meta name="twitter:title" content="Andrés Bedoya - Sr. Hart" />
+    <meta name="twitter:description" content="A little more about me, Andrés Bedoya - Javascript Software Engineer" />
+    <meta name="twitter:image" content="https://srhart.co/images/og.png" />
+    <meta name="twitter:image:alt" content="Andrés Bedoya - Sr. Hart" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script type="module" src="./script.js"></script>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div class="container">
+        <header class="srheader">
+            <div>
+                <div class="srhead">
+                    <h1 class="srname">Andrés Bedoya</h1>
+                    <p class="sralias">/ Sr. Hart</p>
                 </div>
-                <a href="/" class="srlogo">
-                    <img src="./images/logo.svg" alt="logo" />
-                </a>
-            </header>
-            <main>
-                <section class="srdescription">
-                    <p class="srlocation">
-                        Currently in Medellín, Colombia
-                        <span class="mr-1">🇨🇴</span>
-                    </p>
+                <h2 class="srsubtitle">Senior Software Engineer</p>
+            </div>
+            <a href="/" class="srlogo">
+                <img src="./images/logo.svg" alt="logo" />
+            </a>
+        </header>
+        <main>
+            <section class="srdescription">
+                <p class="srlocation">
+                    Currently in Medellín, Colombia
+                    <span class="mr-1">🇨🇴</span>
+                </p>
+                <p>
+                    Empowering companies with stellar software products through expert JavaScript engineering. I
+                    leverage cutting-edge frameworks and libraries to create robust, scalable solutions that drive
+                    business growth.
+                </p>
+                <p>
+                    Blogger Evangelist at
+                    <a aria-label="Velocidad de Escape blog" rel="noopener noreferrer" target="_blank"
+                        href="https://www.velocidadescape.com/">Velocidad de Escape</a>.
+                </p>
+            </section>
+            <section class="srsocial">
+                <h3>Elsewhere</h3>
+                <ul>
+                    <li>
+                        <a aria-label="GitHub account" href="https://github.com/angelfire" rel="noopener noreferrer"
+                            target="_blank">
+                            GitHub
+                        </a>
+                    </li>
+                    <li>
+                        <a aria-label="Twitter account"
+                            href="https://twitter.com/intent/follow?screen_name=MonsieurHart" rel="noopener noreferrer"
+                            target="_blank">
+                            Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a aria-label="LinkedIn account" href="https://www.linkedin.com/in/sabedoya"
+                            rel="noopener noreferrer" target="_blank">
+                            LinkedIn
+                        </a>
+                    </li>
+                    <li>
+                        <a aria-label="Calcom account" href="https://cal.com/anbedoyag" rel="noopener noreferrer"
+                            target="_blank">
+                            CalCom
+                        </a>
+                    </li>
+                    <li>
+                        <a aria-label="Google for Developers" href="https://g.dev/srhart" rel="noopener noreferrer"
+                            target="_blank">
+                            Google for Developers
+                        </a>
+                    </li>
+                </ul>
+            </section>
+            <section class="srjournal">
+                <div class="journalhead">
+                    <h3>Journal</h3>
                     <p>
-                        Empowering companies with stellar software products through expert JavaScript engineering. I leverage cutting-edge frameworks and libraries to create robust, scalable solutions that drive business growth.
+                        <a href="https://www.velocidadescape.com/" target="_blank">All Posts &#8614;</a>
                     </p>
-                    <p>
-                        Blogger Evangelist at
-                        <a
-                            aria-label="Velocidad de Escape blog"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                            href="https://www.velocidadescape.com/"
-                            >Velocidad de Escape</a
-                        >.
-                    </p>
-                </section>
-                <section class="srsocial">
-                    <h3>Elsewhere</h3>
-                    <ul>
-                        <li>
-                            <a
-                                aria-label="GitHub account"
-                                href="https://github.com/angelfire"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                GitHub
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                aria-label="Twitter account"
-                                href="https://twitter.com/intent/follow?screen_name=MonsieurHart"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                Twitter
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                aria-label="LinkedIn account"
-                                href="https://www.linkedin.com/in/sabedoya"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                LinkedIn
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                aria-label="Calcom account"
-                                href="https://cal.com/anbedoyag"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                CalCom
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                aria-label="Google for Developers"
-                                href="https://g.dev/srhart"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                Google for Developers
-                            </a>
-                        </li>
-                    </ul>
-                </section>
-                <section class="srjournal">
-                    <div class="journalhead">
-                        <h3>Journal</h3>
-                        <p>
-                            <a href="https://www.velocidadescape.com/" target="_blank">All Posts &#8614;</a>
-                        </p>
-                    </div>
-                    <ul class="blogposts">
-                        <li>
-                            <a
-                                href="https://www.velocidadescape.com/js/result-pattern-try-catch/"
-                                target="_blank"
-                                rel="noreferrer"
-                                class="post"
-                            >
-                                <span>Result Pattern vs Try/Catch in JavaScript: Streamlining Error Handling</span>
-                                <span class="dashed-line"></span>
-                                <span class="srpostdate">Jul 18, 2024</span>
-                            </a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="https://www.velocidadescape.com/cs/fundamental-principles-software-engineering/"
-                                target="_blank"
-                                rel="noreferrer"
-                                class="post"
-                            >
-                                <span>Fundamental Principles in Software Engineering</span>
-                                <span class="dashed-line"></span>
-                                <span class="srpostdate">Apr 4, 2024</span>
-                            </a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="https://www.velocidadescape.com/react/never-use-index-key/"
-                                target="_blank"
-                                rel="noreferrer"
-                                class="post"
-                            >
-                                <span>Never use the index for the key in React</span>
-                                <span class="dashed-line"></span>
-                                <span class="srpostdate">Mar 15, 2024</span>
-                            </a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="https://www.velocidadescape.com/cs/decoding-big-o-notation/"
-                                target="_blank"
-                                rel="noreferrer"
-                                class="post"
-                            >
-                                <span>Decoding Big O Notation: A Clear Guide to Algorithm Efficiency</span>
-                                <span class="dashed-line"></span>
-                                <span class="srpostdate">Mar 4, 2024</span>
-                            </a
-                            >
-                        </li>
-                        <li>
-                            <a
-                                href="https://www.velocidadescape.com/js/navigating-data-streams-iterators-generators/"
-                                target="_blank"
-                                rel="noreferrer"
-                                class="post"
-                            >
-                                <span>An Exploration of JavaScript Iterators and Generators</span>
-                                <span class="dashed-line"></span>
-                                <span class="srpostdate">Nov 22, 2023</span>
-                            </a
-                            >
-                        </li>
-                    </ul>
-                </section>
-            </main>
-            <footer class="srfooter">
-                <p>2025 @Copyleft - All Wrongs Reserved - ◉_◉ Sr. Hart</p>
-                <div class="palette"></div>
-            </footer>
-        </div>
-    </body>
+                </div>
+                <ul class="blogposts">
+                    <li>
+                        <a href="https://www.velocidadescape.com/js/result-pattern-try-catch/" target="_blank"
+                            rel="noreferrer" class="post">
+                            <span>Result Pattern vs Try/Catch in JavaScript: Streamlining Error Handling</span>
+                            <span class="dashed-line"></span>
+                            <span class="srpostdate">Jul 18, 2024</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.velocidadescape.com/cs/fundamental-principles-software-engineering/"
+                            target="_blank" rel="noreferrer" class="post">
+                            <span>Fundamental Principles in Software Engineering</span>
+                            <span class="dashed-line"></span>
+                            <span class="srpostdate">Apr 4, 2024</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.velocidadescape.com/react/never-use-index-key/" target="_blank"
+                            rel="noreferrer" class="post">
+                            <span>Never use the index for the key in React</span>
+                            <span class="dashed-line"></span>
+                            <span class="srpostdate">Mar 15, 2024</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.velocidadescape.com/cs/decoding-big-o-notation/" target="_blank"
+                            rel="noreferrer" class="post">
+                            <span>Decoding Big O Notation: A Clear Guide to Algorithm Efficiency</span>
+                            <span class="dashed-line"></span>
+                            <span class="srpostdate">Mar 4, 2024</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.velocidadescape.com/js/navigating-data-streams-iterators-generators/"
+                            target="_blank" rel="noreferrer" class="post">
+                            <span>An Exploration of JavaScript Iterators and Generators</span>
+                            <span class="dashed-line"></span>
+                            <span class="srpostdate">Nov 22, 2023</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        <footer class="srfooter">
+            <p>2025 @Copyleft - All Wrongs Reserved - ◉_◉ Sr. Hart</p>
+            <div class="palette"></div>
+        </footer>
+    </div>
+</body>
+
 </html>
