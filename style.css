@@ -184,10 +184,11 @@ body {
 }
 
 .post {
-  align-items: flex-start;
+  align-items: baseline;
   column-gap: 9px;
   display: flex;
   justify-content: space-between;
+  margin: 5px 0;
 }
 
 /* content */
