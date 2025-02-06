@@ -136,9 +136,13 @@ h3 {
 }
 
 a {
-  background: linear-gradient(transparent 60%, #41adff 60%, #41adff 70%);
+  background: linear-gradient(transparent 70%, #41adff 70%, #41adff 70%);
+  color: #000;
+  text-decoration: none;
+
   &:hover {
     background: linear-gradient(transparent 0%, #41adff 0%, #41adff 100%);
+    color: #fff;
   }
 }
 
