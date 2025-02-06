@@ -135,6 +135,13 @@ h3 {
   text-transform: uppercase;
 }
 
+a {
+  background: (transparent 60%, #41adff 60%, #41adff 70%);
+  &:hover {
+    background: (transparent 0%, #41adff 0%, #41adff 100%);
+  }
+}
+
 /* Social */
 .srsocial {
   ul {
