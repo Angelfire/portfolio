@@ -106,12 +106,7 @@ p {
 
 .srlogo {
   margin-top: 16px;
-}
-
-.srlogo {
-  img {
-    width: 48px;
-  }
+  width: 48px;
 }
 
 /* Content */
