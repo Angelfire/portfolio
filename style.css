@@ -136,9 +136,9 @@ h3 {
 }
 
 a {
-  background: (transparent 60%, #41adff 60%, #41adff 70%);
+  background: linear-gradient(transparent 60%, #41adff 60%, #41adff 70%);
   &:hover {
-    background: (transparent 0%, #41adff 0%, #41adff 100%);
+    background: linear-gradient(transparent 0%, #41adff 0%, #41adff 100%);
   }
 }
 
