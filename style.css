@@ -131,13 +131,12 @@ h3 {
 }
 
 a {
-  background: linear-gradient(transparent 90%, #000 90%, #000 70%);
   color: #000;
-  text-decoration: none;
+  text-underline-offset: 3px;
+  text-decoration: underline;
 
   &:hover {
-    background: linear-gradient(transparent 0%, #000 0%, #000 100%);
-    color: #fff;
+    text-decoration-thickness: 2px;
   }
 }
 
