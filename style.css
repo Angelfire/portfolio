@@ -246,12 +246,13 @@ a {
   gap: 8px;
 
   p {
-    font-size: 12px;
+    font-size: 9px;
   }
 }
 
 .animate-blink {
   animation: blink 1s step-end infinite;
+  font-size: 10px;
 }
 
 @keyframes blink {
@@ -310,6 +311,16 @@ a {
 
   .srfooter {
     justify-content: space-between;
+  }
+
+  .animate-blink {
+    font-size: 12px;
+  }
+
+  .srfooter-left {
+    p {
+      font-size: 12px;
+    }
   }
 
   .palette {
