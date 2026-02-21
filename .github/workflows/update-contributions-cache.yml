@@ -1,0 +1,39 @@
+name: Update Contributions Cache
+
+on:
+  schedule:
+    - cron: "15 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch and update cache
+        env:
+          GITHUB_USERNAME: angelfire
+        run: node scripts/update-contributions-cache.mjs
+
+      - name: Commit cache file if changed
+        run: |
+          if git diff --quiet -- contributions-cache.json; then
+            echo "No changes in contributions-cache.json"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add contributions-cache.json
+          git commit -m "chore: update contributions cache"
+          git push

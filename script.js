@@ -138,11 +138,21 @@ const GITHUB_USERNAME = "angelfire";
 const WEEKS_TO_SHOW = 52;
 
 async function fetchContributions(username) {
-  const res = await fetch(
+  const cachedRes = await fetch("/contributions-cache.json", {
+    cache: "no-store",
+  });
+  if (cachedRes.ok) {
+    const cachedPayload = await cachedRes.json();
+    if (cachedPayload?.data) {
+      return cachedPayload.data;
+    }
+  }
+
+  const apiRes = await fetch(
     `https://github-contributions-api.jogruber.de/v4/${username}`,
   );
-  if (!res.ok) throw new Error("Failed to fetch contributions");
-  return res.json();
+  if (!apiRes.ok) throw new Error("Failed to fetch contributions");
+  return apiRes.json();
 }
 
 function renderContributionsGraph(data) {
