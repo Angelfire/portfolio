@@ -139,23 +139,12 @@ a {
 /* Description */
 .srdescription {
   p {
-    margin: 12px 0;
+    margin: 16px 0;
   }
 }
 
 .srlocation {
   font-size: 12px;
-}
-
-/* Social */
-.srsocial {
-  ul {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 14px;
-    list-style: none;
-    padding-inline-start: 0;
-  }
 }
 
 .dashed-line {
@@ -376,17 +365,8 @@ a {
   }
 
   .contributions-graph {
-    --cell-size: 10px;
+    --cell-size: 11px;
     --cell-gap: 2px;
-  }
-
-  .srsocial {
-    ul {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      column-gap: 14px;
-    }
   }
 
   .srfooter {
