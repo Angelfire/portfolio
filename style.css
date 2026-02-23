@@ -69,7 +69,6 @@ p {
   top: 20px;
   left: 20px;
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 20px;
   z-index: 10;
   margin-right: 20px;
   max-width: 768px;
@@ -193,7 +192,7 @@ a {
 }
 
 .contributions-graph {
-  --cell-size: 7px;
+  --cell-size: 5.5px;
   --cell-gap: 1px;
   display: grid;
   grid-template-columns: repeat(var(--weeks, 52), var(--cell-size));
@@ -412,5 +411,6 @@ a {
 @media (min-width: 1024px) {
   .container {
     margin-right: 0;
+    padding: 20px;
   }
 }
