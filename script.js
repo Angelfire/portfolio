@@ -57,6 +57,21 @@ let lastTime = 0;
 const fps = 30;
 const fpsInterval = 1000 / fps;
 
+const themeColors = {
+  light: { bg: "#f0f0f0", symbol: "#d0d0d0", hover: "#505050" },
+  dark: { bg: "#1a1a1a", symbol: "#333333", hover: "#aaaaaa" },
+};
+
+function getTheme() {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+function getColors() {
+  return themeColors[getTheme()];
+}
+
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -75,7 +90,7 @@ function generateSymbolGrid() {
         symbol: symbols[Math.floor(Math.random() * symbols.length)],
         x,
         y,
-        color: "#d0d0d0",
+        hovered: false,
       });
     }
     symbolGrid.push(row);
@@ -83,15 +98,16 @@ function generateSymbolGrid() {
 }
 
 function drawBackground() {
-  ctx.fillStyle = "#f0f0f0";
+  const colors = getColors();
+  ctx.fillStyle = colors.bg;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   ctx.font = "12px monospace";
 
   symbolGrid.forEach((row) => {
-    row.forEach((symbol) => {
-      ctx.fillStyle = symbol.color;
-      ctx.fillText(symbol.symbol, symbol.x, symbol.y);
+    row.forEach((s) => {
+      ctx.fillStyle = s.hovered ? colors.hover : colors.symbol;
+      ctx.fillText(s.symbol, s.x, s.y);
     });
   });
 }
@@ -108,9 +124,9 @@ function handleMouseMove(event) {
         Math.abs(symbol.x - x) < hoverRadius &&
         Math.abs(symbol.y - y) < hoverRadius
       ) {
-        symbol.color = "#505050";
+        symbol.hovered = true;
       } else {
-        symbol.color = "#d0d0d0";
+        symbol.hovered = false;
       }
     });
   });
